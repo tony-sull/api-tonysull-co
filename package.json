@@ -1,5 +1,5 @@
 {
-  "name": "@example/minimal",
+  "name": "api-tonysull-co",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -8,9 +8,23 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "run-s format:*",
+    "format:prettier": "prettier --ignore-path .gitignore -w .",
+    "format:eslint": "eslint --fix --ignore-path .eslintignore --ext .js,.ts,.astro --fix ."
   },
   "dependencies": {
     "astro": "^1.6.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-astro": "^0.21.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "prettier-plugin-astro": "^0.7.0"
   }
 }
