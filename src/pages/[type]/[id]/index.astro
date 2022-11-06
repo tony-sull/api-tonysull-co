@@ -1,53 +1,54 @@
 ---
 import { Markdown } from 'astro-remote'
+import { unescape } from 'html-escaper'
 import { get as jsonld } from './index.jsonld.js'
 import { get as md } from './index.md.js'
 import Schema from '@components/Schema.astro'
+import { unescapeHTML } from 'astro/dist/runtime/server/escape.js'
 export { getStaticPaths } from './index.jsonld.js'
 
 function parseAccept(request: Request) {
-    return (request.headers.get('Accept') || '')
-        .split(',')
-        .map((a) => a.trim())
-        .filter(Boolean)
+  return (request.headers.get('Accept') || '')
+    .split(',')
+    .map(a => a.trim())
+    .filter(Boolean)
 }
 
 const accept = parseAccept(Astro.request)
 
 // reuse the `.md` endpoint
 if (accept.includes('text/markdown')) {
-    return await md(Astro)
+  return await md(Astro)
 }
 
 const res = (await jsonld(Astro)) as Response
 
 // 404, bail early
 if (res.status !== 200) {
-    return res
+  return res
 }
 
 // reuse the `.jsonld` endpoint
 if (
-    accept.includes('application/json') ||
-    accept.includes('application/ld+json')
+  accept.includes('application/json') ||
+  accept.includes('application/ld+json')
 ) {
-    return res
+  return res
 }
 
-const script = await res.json()
-const { articleBody } = script['@graph'][0]
+const { articleBody, ...script } = await res.json()
 ---
 
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{script.name}</title>
-    </head>
-    <body>
-        <Schema json={script} space={2} />
-        <main>
-            <h1>{script.name}</h1>
-            {articleBody && <Markdown content={articleBody} />}
-        </main>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{script.name}</title>
+  </head>
+  <body>
+    <Schema json={script} space={2} />
+    <main>
+      <h1>{script.name}</h1>
+      {articleBody && <Markdown content={unescape(articleBody)} />}
+    </main>
+  </body>
 </html>

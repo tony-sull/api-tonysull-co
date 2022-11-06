@@ -1,0 +1,7 @@
+name: Notes
+description: These are my notes, good or bad I wrote them. Why let them live in a walled garden? They are also syndicated to my Twitter account and an RSS feed if that's your thing!
+author: tony
+image: tony-avatar-96x96
+'@graph':
+    - 'power-of-simplicity'
+    - 'web-components-in-astro'

@@ -1,0 +1,22 @@
+name: Articles
+description: I'm a frontend developer and co-founder of Navillus, a software studio and think tank in The Hague. In a hurry? My notes also get syndicated to Twitter.
+author: tony
+image: tony-avatar-96x96
+'@graph':
+  - 'introducing-svelte-entity-store'
+  - 'jamstack-2_0'
+  - 'progressive-enhancement'
+  - 'json-ld-in-sveltekit'
+  - 'power-of-svelte-actions'
+  - 'keeping-it-simple-with-astro'
+  - 'astro-plus-netlify-cms'
+  - 'svelte-class-props'
+  - 'astro-plus-forestry'
+  - 'astro-plus-snipcart'
+  - 'converting-navillus-to-astro'
+  - 'astro-plus-swup'
+  - 'astro-plus-forestry-revisited'
+  - 'power-of-simplicity'
+  - 'web-components-in-astro'
+  - 'astro-themes-and-integrations'
+  - 'astro-showcase'

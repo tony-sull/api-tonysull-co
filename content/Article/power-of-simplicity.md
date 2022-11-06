@@ -2,9 +2,12 @@
 name: The power of simplicity
 description: It's easy to get swept up in the latest libraries and platforms, but
     don't underestimate the time savings of "boring" tech.
-image: 2021-08-07-power-of-simplicity
-datePublished: '2021-08-07T17:42:35Z'
+image: power-of-simplicity
+datePublished: 'Aug 07, 2021'
 author: tony
+sameAs: https://navillus.dev/blog/power-of-simplicity/
+keywords:
+  - code
 ---
 
 Our last post highlighted the benefits of using [Astro](https://astro.build) and [Forestry CMS](https://forestry.io) (catch up [here](/blog/astro-plus-forestry-revisited) in case you missed it). Forestry actually shared our post with a really important point that I thought was worth digging into with a proper blog post.
