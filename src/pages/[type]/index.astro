@@ -1,0 +1,58 @@
+---
+import { plural } from 'pluralize'
+import { get as jsonld } from './index.jsonld.js'
+import Schema from '@components/Schema.astro'
+import type { Schema as SchemaType } from '@schemas/index.js'
+export { getStaticPaths } from './index.jsonld.js'
+
+function parseAccept(request: Request) {
+    return (request.headers.get('Accept') || '')
+        .split(',')
+        .map((a) => a.trim())
+        .filter(Boolean)
+}
+
+const accept = parseAccept(Astro.request)
+
+const res = (await jsonld(Astro)) as Response
+
+// 404, bail early
+if (res.status !== 200) {
+    return res
+}
+
+// reuse the `.jsonld` endpoint
+if (
+    accept.includes('application/json') ||
+    accept.includes('application/ld+json')
+) {
+    return res
+}
+
+const { articleBody, ...script } = await res.json()
+
+const { type } = Astro.params as { type: string }
+---
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{plural(type)}</title>
+    </head>
+    <body>
+        <Schema json={script} space={2} />
+        <main>
+            <h1>{plural(type)}</h1>
+            <ul>
+                {script['@graph'].map((content: SchemaType) => (
+                    <li>
+                        <a href={content.url}>
+                            <h2>{content.name}</h2>
+                            {content.description ? (<p>{content.description}</p>) : undefined}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </main>
+    </body>
+</html>
