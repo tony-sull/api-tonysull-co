@@ -5,7 +5,7 @@ import { zc } from '../utils/zod.js'
 
 function createSchema() {
     return Base.schema.extend({
-        '@type': z.literal('Publication'),
+        '@type': z.literal('CreativeWork'),
         abstract: z
             .string()
             .optional()

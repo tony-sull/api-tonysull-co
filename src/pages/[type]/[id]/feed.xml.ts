@@ -2,7 +2,7 @@ import rss from '@astrojs/rss'
 import type { APIRoute } from 'astro'
 import { fetchOne } from '@api/index.js'
 import type { Schema } from '@schemas/index.js'
-import type { Schema as Publication } from '@schemas/publication.js'
+import type { Schema as Periodical } from '@schemas/periodical.js'
 import { MaybeType } from '@utils/maybe.js'
 export { getStaticPaths } from './index.jsonld.js'
 
@@ -28,7 +28,7 @@ export const get: APIRoute = async ({ params, request }) => {
         return new Response(`"identifier" is required`, { status: 400 })
     }
 
-    if (schema !== 'Publication') {
+    if (schema !== 'Periodical') {
         return new Response('404 not found', { status: 404 })
     }
 
@@ -39,9 +39,9 @@ export const get: APIRoute = async ({ params, request }) => {
             return new Response('404 not found', { status: 404 })
         }
 
-        const publication = content.value as Publication
+        const periodical = content.value as Periodical
 
-        const [pubDate] = publication['@graph']
+        const [pubDate] = periodical['@graph']
             .map(
                 ({ datePublished, dateModified }) =>
                     dateModified || datePublished
@@ -50,10 +50,10 @@ export const get: APIRoute = async ({ params, request }) => {
             .sort((a, b) => b!.getDate() - a!.getDate())
 
         return rss({
-            title: publication.name,
-            description: publication.description,
+            title: periodical.name,
+            description: periodical.description,
             site: import.meta.env.SITE,
-            items: publication['@graph']
+            items: periodical['@graph']
                 .filter(({ datePublished }) => !!datePublished)
                 .map((article) => ({
                     link: article.url,
@@ -69,11 +69,11 @@ export const get: APIRoute = async ({ params, request }) => {
                 pubDate: pubDate?.toUTCString(),
                 copywright: `© ${new Date().getFullYear()}. All rights reserved.`,
                 generator: 'Flow CMS',
-                image: publication.image?.contentUrl && {
+                image: periodical.image?.contentUrl && {
                     link: import.meta.env.SITE,
-                    title: publication.name,
-                    description: publication.description,
-                    url: publication.image?.contentUrl
+                    title: periodical.name,
+                    description: periodical.description,
+                    url: periodical.image?.contentUrl
                 },
                 lastBuildDate: new Date().toUTCString(),
                 link: new URL(

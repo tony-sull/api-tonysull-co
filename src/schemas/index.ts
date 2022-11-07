@@ -1,14 +1,14 @@
 import * as Article from './article.js'
 import * as ImageObject from './imageobject.js'
 import * as Person from './person.js'
-import * as Publication from './publication.js'
+import * as Periodical from './periodical.js'
 import * as Thing from './thing.js'
 
 export type Schema =
     | Article.Schema
     | ImageObject.Schema
     | Person.Schema
-    | Publication.Schema
+    | Periodical.Schema
     | Thing.Schema
 
 export function schemaForType<T extends Schema>(type: T['@type']) {
@@ -19,8 +19,8 @@ export function schemaForType<T extends Schema>(type: T['@type']) {
             return ImageObject.schema
         case 'Person':
             return Person.schema
-        case 'Publication':
-            return Publication.schema
+        case 'Periodical':
+            return Periodical.schema
         case 'Thing':
             return Thing.schema
         default:
@@ -36,8 +36,8 @@ export function parserForType<T extends Schema>(type: T['@type']) {
             return ImageObject.parse
         case 'Person':
             return Person.parse
-        case 'Publication':
-            return Publication.parse
+        case 'Periodical':
+            return Periodical.parse
         case 'Thing':
             return Thing.parse
         default:
@@ -53,8 +53,8 @@ export function stringify<T extends Schema>(thing: T) {
             return ImageObject.stringify(thing)
         case 'Person':
             return Person.stringify(thing)
-        case 'Publication':
-            return Publication.stringify(thing)
+        case 'Periodical':
+            return Periodical.stringify(thing)
         case 'Thing':
             return Thing.stringify(thing)
         default:

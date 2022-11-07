@@ -5,14 +5,14 @@ import { zc } from '../utils/zod.js'
 
 function createSchema() {
     return Base.schema.extend({
-        '@type': z.literal('Publication'),
+        '@type': z.literal('Periodical'),
         '@graph': zc
             .relationMany<Article>('Article')
             .describe('List of articles in the series or publication.'),
         description: z
             .string()
             .min(1)
-            .describe('A description of the publication.')
+            .describe('A description of the periodical.')
     })
 }
 
