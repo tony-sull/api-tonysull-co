@@ -3,5 +3,5 @@ description: These are my notes, good or bad I wrote them. Why let them live in 
 author: tony
 image: tony-avatar-96x96
 '@graph':
-    - 'power-of-simplicity'
-    - 'web-components-in-astro'
+    - 'would-you-like-a-straw'
+    - 'fifth-of-november-2022'
