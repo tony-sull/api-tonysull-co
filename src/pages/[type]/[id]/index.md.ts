@@ -3,7 +3,6 @@ import yaml from 'js-yaml'
 import { fetchOne } from '@api/index.js'
 import type { Schema } from '@schemas/index.js'
 import { MaybeType } from '@utils/maybe.js'
-export { getStaticPaths } from './index.jsonld.js'
 
 function asMarkdown(content: Schema) {
     const { articleBody = '', ...frontmatter } = content as any

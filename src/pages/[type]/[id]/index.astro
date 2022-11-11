@@ -5,7 +5,6 @@ import { get as jsonld } from './index.jsonld.js'
 import { get as md } from './index.md.js'
 import Schema from '@components/Schema.astro'
 import { unescapeHTML } from 'astro/dist/runtime/server/escape.js'
-export { getStaticPaths } from './index.jsonld.js'
 
 function parseAccept(request: Request) {
   return (request.headers.get('Accept') || '')

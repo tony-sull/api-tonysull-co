@@ -3,20 +3,6 @@ import { fetchAll, fetchAllBySchema } from '@api/index.js'
 import { ldToString } from '@components/schema.js'
 import type { Schema } from '@schemas/index.js'
 
-export async function getStaticPaths() {
-    const content = await fetchAll()
-
-    const types = content.reduce((acc, next) => {
-        acc.add(next['@type'])
-        return acc
-    }, new Set<Schema['@type']>())
-
-    return Array.from(types.values())
-        .map((type) => ({
-            params: { type }
-        }))
-}
-
 function safeParse(fallback: number) {
     return (value?: string | null) => {
         if (value === undefined || value === null) {

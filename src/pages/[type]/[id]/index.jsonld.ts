@@ -5,17 +5,6 @@ import { MaybeType } from '../../../utils/maybe.js'
 import { ldToString } from '../../../components/schema.js'
 import { identifierToSlug } from '@utils/slugify.js'
 
-export async function getStaticPaths() {
-    const content = await fetchAll()
-
-    return content.map((entry) => ({
-        params: {
-            type: entry['@type'],
-            id: identifierToSlug(entry.identifier)
-        }
-    }))
-}
-
 function safeParse(fallback: number) {
     return (value?: string | null) => {
         if (value === undefined || value === null) {

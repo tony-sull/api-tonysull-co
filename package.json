@@ -14,7 +14,10 @@
     "format:eslint": "eslint --fix --ignore-path .eslintignore --ext .js,.ts,.astro --fix ."
   },
   "dependencies": {
-    "astro": "^1.6.0"
+    "@astrojs/image": "^0.11.4",
+    "@astrojs/netlify": "^1.2.1",
+    "@astrojs/node": "^3.0.0",
+    "astro": "^1.6.7"
   },
   "devDependencies": {
     "@astrojs/rss": "^1.0.3",
@@ -34,6 +37,7 @@
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "^0.7.0",
     "schema-dts": "^1.1.0",
+    "sharp": "^0.31.2",
     "typescript": "^4.8.4",
     "zod": "^3.19.1"
   }
