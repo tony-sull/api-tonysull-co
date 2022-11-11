@@ -17,9 +17,9 @@ function stringifyCustomData(data: Record<string, unknown>): string {
 }
 
 export const get: APIRoute = async ({ params, request }) => {
-    const { schema, id } = params
+    const { type, id } = params
 
-    if (!schema) {
+    if (!type) {
         return new Response(`"schema" is required`, { status: 400 })
     }
 
@@ -27,12 +27,12 @@ export const get: APIRoute = async ({ params, request }) => {
         return new Response(`"identifier" is required`, { status: 400 })
     }
 
-    if (schema !== 'Periodical') {
+    if (type !== 'Periodical') {
         return new Response('404 not found', { status: 404 })
     }
 
     try {
-        const content = await fetchOne(schema as Schema['@type'], id.toString())
+        const content = await fetchOne(type as Schema['@type'], id.toString())
 
         if (content.type === MaybeType.Nothing) {
             return new Response('404 not found', { status: 404 })
