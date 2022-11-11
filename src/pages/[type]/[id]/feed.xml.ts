@@ -4,7 +4,6 @@ import { fetchOne } from '@api/index.js'
 import type { Schema } from '@schemas/index.js'
 import type { Schema as Periodical } from '@schemas/periodical.js'
 import { MaybeType } from '@utils/maybe.js'
-export { getStaticPaths } from './index.jsonld.js'
 
 function isObject(value: unknown): value is Record<string, unknown> {
     return Object.prototype.toString.call(value) === '[object Object]'

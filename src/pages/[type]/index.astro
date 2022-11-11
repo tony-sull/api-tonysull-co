@@ -3,7 +3,6 @@ import pluralize from 'pluralize'
 import { get as jsonld } from './index.jsonld.js'
 import Schema from '@components/Schema.astro'
 import type { Schema as SchemaType } from '@schemas/index.js'
-export { getStaticPaths } from './index.jsonld.js'
 
 function parseAccept(request: Request) {
     return (request.headers.get('Accept') || '')
