@@ -8,6 +8,9 @@ function createSchema() {
         '@type': z.literal('Periodical'),
         '@graph': zc
             .relationMany<Article>('Article')
+            .transform((articles) => articles
+                .filter(a => !!a.datePublished)
+                .sort((a, b) => b.datePublished!.getTime() - a.datePublished!.getTime()))
             .describe('List of articles in the series or publication.'),
         description: z
             .string()
