@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro'
-import { fetchAll, fetchAllBySchema } from '@api/index.js'
+import { fetchAllBySchema } from '@api/index.js'
 import { ldToString } from '@components/schema.js'
 import type { Schema } from '@schemas/index.js'
 

@@ -2,9 +2,9 @@
 import { Markdown } from 'astro-remote'
 import { unescape } from 'html-escaper'
 import { get as jsonld } from './index.jsonld.js'
-import { get as md } from './index.md.js'
 import Schema from '@components/Schema.astro'
-import { unescapeHTML } from 'astro/dist/runtime/server/escape.js'
+import type { Schema as Thing } from '@schemas/index.js'
+import { identifierToSlug } from '@utils/slugify.js'
 
 function parseAccept(request: Request) {
   return (request.headers.get('Accept') || '')
@@ -35,6 +35,8 @@ if (
   return res
 }
 
+const { type } = Astro.params
+
 const { articleBody, ...script } = await res.json()
 ---
 
@@ -46,8 +48,17 @@ const { articleBody, ...script } = await res.json()
   <body>
     <Schema json={script} space={2} />
     <main>
-      <h1>{script.name}</h1>
+      <h1>{unescape(script.name)}</h1>
       {articleBody && <Markdown content={unescape(articleBody)} />}
+      {script['@graph'] && (
+        <ul>
+          {script['@graph'].map((item: Thing) => (
+            <li>
+              <a href={`/${item['@type']}/${identifierToSlug(item.identifier)}`}>{item.name}</a>
+            </li>
+          ))}
+        </ul>
+      )}
     </main>
   </body>
 </html>

@@ -3,6 +3,7 @@ import pluralize from 'pluralize'
 import { get as jsonld } from './index.jsonld.js'
 import Schema from '@components/Schema.astro'
 import type { Schema as SchemaType } from '@schemas/index.js'
+import { identifierToSlug } from '@utils/slugify.js'
 
 function parseAccept(request: Request) {
     return (request.headers.get('Accept') || '')
@@ -45,7 +46,7 @@ const { type } = Astro.params as { type: string }
             <ul>
                 {script['@graph'].map((content: SchemaType) => (
                     <li>
-                        <a href={content.url}>
+                        <a href={`/${content['@type']}/${identifierToSlug(content.identifier)}`}>
                             <h2>{content.name}</h2>
                             {content.description ? (<p>{content.description}</p>) : undefined}
                         </a>

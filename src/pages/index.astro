@@ -1,0 +1,32 @@
+---
+import pluralize, { plural } from 'pluralize'
+import { fetchAll } from '@api/index.js'
+
+const content = await fetchAll()
+
+const types = Array.from(content.reduce((acc, next) => {
+        acc.add(next['@type'])
+        return acc
+    }, new Set<string>())
+    .keys()
+)
+---
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Flow CMS</title>
+    </head>
+    <body>
+        <main>
+            <h1>Flow CMS</h1>
+            <ul>
+                {types.map((type) => (
+                    <li>
+                        <a href={`/${type}`}>{pluralize(type)}</a>
+                    </li>
+                ))}
+            </ul>
+        </main>
+    </body>
+</html>
