@@ -20,3 +20,4 @@ image: tony-avatar-96x96
   - 'web-components-in-astro'
   - 'astro-themes-and-integrations'
   - 'astro-showcase'
+  - 'introducing-astro-webfinger'
