@@ -35,6 +35,12 @@ function createSchema() {
             .string()
             .optional() // TODO validate mime type
             .describe('Media type typically expressed using a MIME format'),
+        isPartOf: z
+            .array(
+                z.string().url()
+            )
+            .optional()
+            .describe('Indicates an item io CreativeWork that this item, or CreateWork (in some sense), is part of.'),
         headline: z.string().optional().describe('Headline of the article.'),
         keywords: z
             .array(z.string())

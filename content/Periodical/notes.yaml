@@ -5,3 +5,4 @@ image: tony-avatar-96x96
 '@graph':
     - 'would-you-like-a-straw'
     - 'fifth-of-november-2022'
+    - 'self-host-webfinger'
