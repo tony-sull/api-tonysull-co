@@ -1,7 +1,7 @@
 ---
 name: Self-host your Webfinger profile
 description: Self-host your Webfinger profile
-datePublished: 'Nov 27, 2022'
+datePublished: '2022-11-27T18:30:00Z'
 author: tony
 isPartOf:
     - https://twitter.com/tonysull_co
