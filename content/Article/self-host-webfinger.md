@@ -10,4 +10,4 @@ isPartOf:
 
 Still not sold on Mastodon as the answer to social media but that won't stop me from trying to self-hosted it!
 
-🦣 @toot@tonysull.co
+🦣 toot@tonysull.co
